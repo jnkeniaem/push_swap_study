@@ -10,7 +10,7 @@ int if_satisfied(int argc, char **argv)
 
 	i = 1;
 	if (argc == 2)
-		exit(EXIT_SUCCESS);
+		return 1;
 	while (i <= argc - 2)
 	{
 		if (argv[i] < argv[i + 1])
@@ -19,6 +19,10 @@ int if_satisfied(int argc, char **argv)
 			return (0);
 	}
 	if (i == argc - 1)
-		exit(EXIT_SUCCESS);
+		return 1;
 	return (0);
 }
+/*
+if_double_quote(char **argv)
+{
+*/

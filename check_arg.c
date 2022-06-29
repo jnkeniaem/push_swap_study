@@ -89,8 +89,10 @@ void check_duplicate(int argc, char **argv)
 
 void check_arg(int argc, char **argv)
 {
+	
 	check_argc(argc);
-	if_satisfied(argc, argv);
+	//다른거 검사하기 전에 split 먼저 검사해야할듯
 	repetitive_statement(argc, argv);
 	check_duplicate(argc, argv);
+	if_satisfied(argc, argv);
 }

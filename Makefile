@@ -6,7 +6,7 @@
 #    By: jeekim <jeekim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/15 10:42:41 by jeekim            #+#    #+#              #
-#    Updated: 2022/06/22 17:05:14 by jeekim           ###   ########.fr        #
+#    Updated: 2022/06/29 19:35:06 by jeekim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ RM	=	rm -f
 LIBFT_IFLAG	=	-I./libft
 
 LIBFT_PATH	=	./libft/
-LIBFT_SRCS	=	$(addprefix $(LIBFT_PATH), ft_putstr_fd.c ft_strlen.c ft_putchar_fd.c ft_putnbr_fd.c)
+LIBFT_SRCS	=	$(addprefix $(LIBFT_PATH), ft_putstr_fd.c ft_strlen.c ft_putchar_fd.c ft_putnbr_fd.c ft_atoi.c)
 LIBFT_OBJS	=	$(LIBFT_SRCS:.c=.o)
 
-SRCS	=	main.c check_arg.c utils.c check_arg2.c
+SRCS	=	main.c check_arg.c utils.c check_arg2.c circular_array.c
 SRCS_B	=	
 OBJS	=	$(SRCS:.c=.o)
 OBJS_B	=	$(SRCS_B:.c=.o)

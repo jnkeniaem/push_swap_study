@@ -9,94 +9,129 @@ void init_stack(int argc, char **argv, t_circular_ary *p_ca, t_a *pa, t_b *pb)//
 	p_ca -> max_arg = argc - 1;
 	pa->stack = malloc(p_ca -> max_arg * sizeof(int));
 	pb->stack = malloc(p_ca -> max_arg * sizeof(int));
-	pa -> front = p_ca->max_arg -1;
-	pa -> rear = p_ca->max_arg -1;
+	pa -> front = 0;
+	pa -> rear = 0;
 	while (i < argc)
 	{
-		pa->stack[pa->front] = ft_atoi(argv[i]);//ft_atoi 지워야함. 다른 문자열을 정수로 바꿔주는것도 생각해보자 지금은 그냥 이게 생각나서 바로 하는거궁
-		if (pa->front == 0)
+		pa->stack[pa->rear] = ft_atoi(argv[i]);//ft_atoi.. 다른 문자열을 정수로 바꿔주는것도 생각해보자 지금은 그냥 이게 생각나서 바로 하는거궁
+		if (pa->rear == p_ca -> max_arg -1)
 			break;
-		else
-			pa->front = (pa->front -1) % (p_ca->max_arg);
+		pa->rear = (pa->rear + 1) % (p_ca->max_arg);
 		i++;
 	}
-	pb -> front = p_ca->max_arg -1;
+	pb -> front = 0;
 	pb -> rear = p_ca->max_arg -1;
-	current_arg(pa, pb);
-	printf("%d\n", pa->current);
+	pa->current = argc -1;
+	pb->current = 0;
 }
 
-void sa(t_a *pa, t_b *pb)
+void sa(t_circular_ary *p_ca, t_a *pa)
 {
 	int	temp;
 
-	current_arg(pa, pb);
-	if (pa->current <= 1)
-		return ;
 	temp = pa->stack[pa->front];
-	pa->stack[pa->front] = pa->stack[pa->front + 1];
+	pa->stack[pa->front] = pa->stack[(pa->front + 1) % p_ca->max_arg];
 	pa->stack[pa->front + 1] = temp;
-}//a에 하나 이하의 경우 swap 안되게
+}
 
-void sb(t_a *pa, t_b *pb)
+void sb(t_circular_ary *p_ca, t_b *pb)
 {
 	int	temp;
 
-	current_arg(pa, pb);
-	if (pb->current <= 1)
-		return ;
 	temp = pb->stack[pb->front];
-	pb->stack[pb->front] = pb->stack[pb->front + 1];
+	pb->stack[pb->front] = pb->stack[(pb->front + 1) % p_ca->max_arg];
 	pb->stack[pb->front + 1] = temp;
-}//b에 하나 이하의 경우 swap 안되게
+}
 
-void ss(t_a *pa, t_b *pb)
+void ss(t_circular_ary *p_ca, t_a *pa, t_b *pb)
 {
-	sa(pa, pb);
-	sb(pa, pb);
+	sa(p_ca, pa);
+	sb(p_ca, pb);
 }
 
 void pa(t_circular_ary *p_ca, t_a *pa, t_b *pb)
 {
-	current_arg(pa, pb);
-	if (pa->current == 0)
+	if (pb->current == 0)
 		return ;
-	pa->stack[pa->front] = pb->stack[pb->front];
+	pa->front = (pa->front - 1) % p_ca->max_arg;
 	if (pa->front == 0)
+		pa->front = p_ca->max_arg -1;
+	pa->stack[pa->front] = pb->stack[pb->front];
+	if (pb->front == pb->rear)
 		return ;
 	else
-		pa->front = (pa->front - 1) % p_ca->max_arg;
-	if (pb->front == p_ca->max_arg -1)
-		return ;
-	pb->front = (pb->front + 1) % p_ca->max_arg;
+		pb->front = (pb->front + 1) % p_ca->max_arg;
+	(pb->current)--;
+	(pa->current)++;
 }
 
 void pb(t_circular_ary *p_ca, t_a *pa, t_b *pb)
 {
-	current_arg(pa, pb);
 	if (pa->current == 0)
 		return ;
+	if (pb->front == 0)
+		pb->front = p_ca->max_arg -1;
+	else
+		pb->front = (pb->front - 1) % p_ca->max_arg;
+	if (pb->front == 0)
+		pb->front = p_ca->max_arg -1;
 	pb->stack[pb->front] = pa->stack[pa->front];
-	if (pa->front == p_ca->max_arg -1) // 다 찼으면
+	if (pa->front == pa->rear)
 		return ;
 	else
 		pa->front = (pa->front + 1) % p_ca->max_arg;
-	if (pb->front == 0) // 다 찼으면
-		return ; // 그만
-	else
-		pb->front = (pb->front - 1) % p_ca->max_arg;
-}
-//pb 했다가 pa했을때
+	(pa->current)--;
+	(pb->current)++;
+}//pa에 남은게 없는데 pb하라그러면 메시지 날릴까?
 
 void ra(t_circular_ary *p_ca, t_a *pa)
 {
+	int	temp;
+
+	temp = pa->stack[pa->front];
 	pa->front = (pa->front + 1) % p_ca->max_arg;
 	pa->rear = (pa->rear + 1) % p_ca->max_arg;
+	pa->stack[pa->rear] = temp;
 }
-	//front, rear 둘다 하나씩 증가
-//스택이 하나 둘 비어있을때 ra하면?
-void current_arg(t_a *pa, t_b *pb)//현재 남아있는 원소 갯수
+
+void rb(t_circular_ary *p_ca, t_b *pb)
 {
-	pa->current = pa->rear - pa->front + 1;
-	pb->current = pb->rear - pb->front + 1;
+	int	temp;
+	temp = pb->stack[pb->front];
+	pb->front = (pb->front + 1) % p_ca->max_arg;
+	pb->rear = (pb->rear + 1) % p_ca->max_arg;
+	pb->stack[pb->rear] = temp;
+}
+
+void rr(t_circular_ary *p_ca, t_a *pa, t_b *pb)
+{
+	ra(p_ca, pa);
+	rb(p_ca, pb);
+}
+
+
+void rra(t_circular_ary *p_ca, t_a *pa)
+{
+	int	temp;
+
+	temp = pa->stack[pa->rear];
+	pa->front = (pa->front - 1) % p_ca->max_arg;
+	pa->rear = (pa->rear - 1) % p_ca->max_arg;
+	pa->stack[pa->front] = temp;
+}
+
+void rrb(t_circular_ary *p_ca, t_b *pb)
+{
+	int	temp;
+
+	temp = pb->stack[pb->rear];
+	pb->front = (pb->front - 1) % p_ca->max_arg;
+	pb->rear = (pb->rear - 1) % p_ca->max_arg;
+	pb->stack[pb->front] = temp;
+}
+
+void rrr(t_circular_ary *p_ca, t_a *pa, t_b *pb)
+{
+	rra(p_ca, pa);
+	rrb(p_ca, pb);
 }

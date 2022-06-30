@@ -1,5 +1,5 @@
 #include "pushswap.h"
-
+//다 거치면 int 배열에 넣어주는걸로.
 void check_argc(int argc)
 {
 	if (argc == 1)

@@ -37,11 +37,16 @@ void ft_error(int i);
 void repetitive_statement(int argc, char **argv);
 int if_satisfied(int argc, char **argv);
 void init_stack(int argc, char **argv, t_circular_ary *p_ca, t_a *pa, t_b *pb);
-void current_arg(t_a *pa, t_b *pb);
-void sa(t_a *pa, t_b *pb);
-void sb(t_a *pa, t_b *pb);
-void ss(t_a *pa, t_b *pb);
+void sa(t_circular_ary *p_ca, t_a *pa);
+void sb(t_circular_ary *p_ca, t_b *pb);
+void ss(t_circular_ary *p_ca, t_a *pa, t_b *pb);
 void pa(t_circular_ary *p_ca, t_a *pa, t_b *pb);
 void pb(t_circular_ary *p_ca, t_a *pa, t_b *pb);
 void ra(t_circular_ary *p_ca, t_a *pa);
+void rb(t_circular_ary *p_ca, t_b *pb);
+void rr(t_circular_ary *p_ca, t_a *pa, t_b *pb);
+void rra(t_circular_ary *p_ca, t_a *pa);
+void rrb(t_circular_ary *p_ca, t_b *pb);
+void rrr(t_circular_ary *p_ca, t_a *pa, t_b *pb);
+
 #endif

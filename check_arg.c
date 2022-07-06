@@ -1,40 +1,79 @@
 #include "pushswap.h"
-//다 거치면 int 배열에 넣어주는걸로.
+
 void check_argc(int argc)
 {
 	if (argc == 1)
-	{
-		ft_putstr_fd("Error\nNeed more than 1 argument.", 1);
-		exit(EXIT_FAILURE);
-	}
+		ft_error("Error\nNeed more than 1 argument.");
 }
 
-void check_int(char **argv, int h)
+void if_double_quote_1(int argc, char **argv, t_arg *arg)
 {
-	int			minus;
+	int i;
+	int	j;
+    char **temp;
+
+    i = 0;
+    arg->total = 0;
+    while (i < argc -1)
+    {
+        j = 0;
+        temp = ft_split(argv[i + 1], ' ');
+        while (temp[j])
+        {
+			check_int(temp[j]);
+			check_int_range(temp[j]);
+            j++;
+            arg->total++;
+        }
+        i++;
+    }
+    arg->num = malloc(sizeof(int) * arg->total);
+	free(temp);
+}
+
+void if_double_quote_2(int argc, char **argv, t_arg *arg)
+{
+	int	i;
+	int	j;
+	int	k;
+	char **temp;
+
+	i = 0;
+	k = 0;
+	while (i < argc - 1)
+	{
+	j = 0;
+	temp = ft_split(argv[i + 1], ' ');
+	while (temp[j])
+	{
+		arg->num[k] = ft_atoi(temp[j]);
+		k++;
+		j++;
+	}
+	i++;
+    }
+	free(temp);
+}
+
+void check_int(char *str)
+{
 	int			flag;
 	int	i;
 
-	minus = 1;
 	flag = 0;
 	i = 0;
-	argv += h;
-	while (ft_available(*(*argv + i), "+-"))
-	{
-		if (*(*argv + i) == '-')
-			minus *= -1;
+	while (ft_available(*(str + i), "+-"))
 		i++;
-	}
-	while (ft_available(*(*argv + i), "0123456789"))
+	while (ft_available(*(str + i), "0123456789"))
 	{
 		flag = 1;
 		i++;
 	}
-	if (!((flag == 1) && (*(*argv + i) == '\0')))
-		ft_error(1);
+	if (!((flag == 1) && (*(str + i) == '\0')))
+		ft_error("Error\nNot an integer.");
 }
 
-void check_int_range(char **argv, int h)
+void check_int_range(char *str)
 {
 	int			minus;
 	long long	result;
@@ -43,41 +82,36 @@ void check_int_range(char **argv, int h)
 	minus = 1;
 	result = 0;
 	i = 0;
-	argv += h;
-	while (ft_available(*(*argv + i), "+-"))
+	while (ft_available(*(str + i), "+-"))
 	{
-		if (*(*argv + i) == '-')
+		if (*(str + i) == '-')
 			minus *= -1;
 		i++;
 	}
-	while (ft_available(*(*argv + i), "0123456789"))
+	while (ft_available(*(str + i), "0123456789"))
 	{
 		result *= 10;
-		result += *(*argv + i) - '0';
+		result += *(str + i) - '0';
 		if ((result > 2147483647 && minus == 1)
 		|| (result > 2147483648 && minus == -1))
-			ft_error(2);
+			ft_error("Error\nOut of int range.");
 		i++;
 	}
 }
 
-void check_duplicate(int argc, char **argv)
+void check_duplicate(t_arg *arg)
 {
 	int	i;
 	int	j;
 
-	i = 1;
-	j = 2;
-	while (i < argc - 1)
+	i = 0;
+	while (i < arg->total -1)
 	{
 		j = i + 1;
-		while (j < argc)
+		while (j < arg->total)
 		{
-			if (!ft_strcmp(argv[i], argv[j]))
-				{
-					ft_putstr_fd("Error\nDuplicate here.", 1);
-					exit(EXIT_FAILURE);
-				}
+			if (arg->num[i] == arg->num[j])
+				ft_error("Error\nDuplicate here.");
 			else
 				j++;
 		}
@@ -86,13 +120,14 @@ void check_duplicate(int argc, char **argv)
 }
 
 
+#include <stdio.h>
 
-void check_arg(int argc, char **argv)
+void check_arg(int argc, char **argv, t_arg *arg)
 {
 	
 	check_argc(argc);
-	//다른거 검사하기 전에 split 먼저 검사해야할듯
-	repetitive_statement(argc, argv);
-	check_duplicate(argc, argv);
-	if_satisfied(argc, argv);
+	if_double_quote_1(argc, argv, arg);
+	if_double_quote_2(argc, argv, arg);
+	check_duplicate(arg);
+	if_satisfied(arg);
 }

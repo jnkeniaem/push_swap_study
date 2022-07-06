@@ -1,28 +1,18 @@
 #include "pushswap.h"
 
-#include <stdio.h>
-
-int if_satisfied(int argc, char **argv)
-//인수가 하나만 들어오는 경우
-//인수가 순서대로 들어오는 경우
+void if_satisfied(t_arg *arg)
 {
 	int i;
 
-	i = 1;
-	if (argc == 2)
-		return 1;
-	while (i <= argc - 2)
+	i = 0;
+	if (arg->total == 1)
+		exit(EXIT_SUCCESS);
+	while (i < arg->total - 1)
 	{
-		if (argv[i] < argv[i + 1])
+		if (arg->num[i] < arg->num[i + 1])
 			i++;
 		else
-			return (0);
+			return ;
 	}
-	if (i == argc - 1)
-		return 1;
-	return (0);
+	exit(EXIT_SUCCESS);
 }
-/*
-if_double_quote(char **argv)
-{
-*/

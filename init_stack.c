@@ -1,25 +1,31 @@
 #include "pushswap.h"
+#include <stdio.h>
 
-void init_stack(int argc, char **argv, t_circular_ary *p_ca, t_a *pa, t_b *pb)//a stack 만들기?
+void init_stack(t_arg *arg, t_a *pa, t_b *pb)//a stack 만들기?
 {
 	int	i;
 
-	i = 1;
-	p_ca -> max_arg = argc - 1;
-	pa->stack = malloc(p_ca -> max_arg * sizeof(int));
-	pb->stack = malloc(p_ca -> max_arg * sizeof(int));
+	i = 0;
+	pa->stack = malloc(arg->total * sizeof(int));
+	pb->stack = malloc(arg->total * sizeof(int));
 	pa -> front = 0;
 	pa -> rear = 0;
-	while (i < argc)
+	while (i < arg->total)
 	{
-		pa->stack[pa->rear] = ft_atoi(argv[i]);//ft_atoi.. 다른 문자열을 정수로 바꿔주는것도 생각해보자 지금은 그냥 이게 생각나서 바로 하는거궁
-		if (pa->rear == p_ca -> max_arg -1)
+		pa->stack[pa->rear] = arg->num[i];
+		if (pa->rear == arg->total -1)
 			break;
-		pa->rear = (pa->rear + 1) % (p_ca->max_arg);
+		pa->rear = (pa->rear + 1) % (arg->total);
 		i++;
 	}
 	pb -> front = 0;
-	pb -> rear = p_ca->max_arg -1;
-	pa->current = argc -1;
+	pb->rear = arg->total - 1;
+	pa->current = arg->total;
 	pb->current = 0;
+	// i = 0;
+	// while (i < pa->current)
+	// {
+	// 	printf("%d\n", pa->stack[(pa->front + i) % arg->total]);
+	// 	i++;
+	// }
 }

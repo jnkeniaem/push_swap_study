@@ -16,3 +16,25 @@ void if_satisfied(t_arg *arg)
 	}
 	exit(EXIT_SUCCESS);
 }
+
+void check_space(int argc, char **argv)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < argc - 1)
+	{
+		j = 0;
+		while (argv[i + 1][j])
+		{
+			if (argv[i + 1][j] == ' ')
+				j++;
+			else
+				break;
+		}
+		if (argv[i + 1][j] == 0)
+			ft_error("Error\nWhite-spaced argument.");
+		i++;
+	}
+}

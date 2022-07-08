@@ -25,10 +25,11 @@ void if_double_quote_1(int argc, char **argv, t_arg *arg)
             j++;
             arg->total++;
         }
-        i++;
+		free(temp);
+		i++;
     }
     arg->num = malloc(sizeof(int) * arg->total);
-	free(temp);
+	
 }
 
 void if_double_quote_2(int argc, char **argv, t_arg *arg)
@@ -50,9 +51,9 @@ void if_double_quote_2(int argc, char **argv, t_arg *arg)
 		k++;
 		j++;
 	}
+	free(temp);
 	i++;
     }
-	free(temp);
 }
 
 void check_int(char *str)
@@ -126,6 +127,7 @@ void check_arg(int argc, char **argv, t_arg *arg)
 {
 	
 	check_argc(argc);
+	check_space(argc, argv);
 	if_double_quote_1(argc, argv, arg);
 	if_double_quote_2(argc, argv, arg);
 	check_duplicate(arg);

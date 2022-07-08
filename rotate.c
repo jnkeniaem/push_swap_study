@@ -1,26 +1,26 @@
 #include "pushswap.h"
 
-void ra(t_arg *arg, t_a *pa)
+void ra(t_arg *arg, t_a *ptr_a)
 {
 	int	temp;
 
-	temp = pa->stack[pa->front];
-	pa->front = (pa->front + 1) % arg->total;
-	pa->rear = (pa->rear + 1) % arg->total;
-	pa->stack[pa->rear] = temp;
+	temp = ptr_a->stack[ptr_a->front];
+	ptr_a->front = (ptr_a->front + 1) % arg->total;
+	ptr_a->rear = (ptr_a->rear + 1) % arg->total;
+	ptr_a->stack[ptr_a->rear] = temp;
 }
 
-void rb(t_arg *arg, t_b *pb)
+void rb(t_arg *arg, t_b *ptr_b)
 {
 	int	temp;
-	temp = pb->stack[pb->front];
-	pb->front = (pb->front + 1) % arg->total;
-	pb->rear = (pb->rear + 1) % arg->total;
-	pb->stack[pb->rear] = temp;
+	temp = ptr_b->stack[ptr_b->front];
+	ptr_b->front = (ptr_b->front + 1) % arg->total;
+	ptr_b->rear = (ptr_b->rear + 1) % arg->total;
+	ptr_b->stack[ptr_b->rear] = temp;
 }
 
-void rr(t_arg *arg, t_a *pa, t_b *pb)
+void rr(t_arg *arg, t_a *ptr_a, t_b *ptr_b)
 {
-	ra(arg, pa);
-	rb(arg, pb);
+	ra(arg, ptr_a);
+	rb(arg, ptr_b);
 }

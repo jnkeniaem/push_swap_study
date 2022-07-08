@@ -74,26 +74,16 @@ void ft_sort_descend(int *tab, int size)
 	}
 }
 
-//숫자 3개 비교해서 제일 큰거 고르는 함수
-int the_highest_is(t_a *ptr_a, t_b *ptr_b)
+void ft_max(t_arg *parg)
 {
-	int	h;
 	int	i;
 
-	if (ptr_a->rear > ptr_a->front)
-		h = pmerge->p1;
-	else
-		h = pmerge->p3;
-	if (pmerge->p1 < ptr_a->rear)
-		h = pmerge->p3;
-	else
-		h = pmerge->p1;
-	if (pmerge->p2 > pmerge->p3)
-		i = pmerge->p2;
-	else
-		i = pmerge->p3;
-	if	(h > i)
-		return (h);
-	else
-		return (i);
+	i = 0;
+	parg->max = parg->num[i];
+	while (i < parg->total - 1)
+	{
+		if (parg->max < parg->num[i + 1])
+			parg->max = parg->num[i + 1];
+		i++;
+	}
 }

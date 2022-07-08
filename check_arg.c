@@ -6,14 +6,14 @@ void check_argc(int argc)
 		ft_error("Error\nNeed more than 1 argument.");
 }
 
-void if_double_quote_1(int argc, char **argv, t_arg *arg)
+void if_double_quote_1(int argc, char **argv, t_arg *parg)
 {
 	int i;
 	int	j;
     char **temp;
 
     i = 0;
-    arg->total = 0;
+    parg->total = 0;
     while (i < argc -1)
     {
         j = 0;
@@ -23,16 +23,16 @@ void if_double_quote_1(int argc, char **argv, t_arg *arg)
 			check_int(temp[j]);
 			check_int_range(temp[j]);
             j++;
-            arg->total++;
+            parg->total++;
         }
 		free(temp);
 		i++;
     }
-    arg->num = malloc(sizeof(int) * arg->total);
+    parg->num = malloc(sizeof(int) * parg->total);
 	
 }
 
-void if_double_quote_2(int argc, char **argv, t_arg *arg)
+void if_double_quote_2(int argc, char **argv, t_arg *parg)
 {
 	int	i;
 	int	j;
@@ -47,7 +47,7 @@ void if_double_quote_2(int argc, char **argv, t_arg *arg)
 	temp = ft_split(argv[i + 1], ' ');
 	while (temp[j])
 	{
-		arg->num[k] = ft_atoi(temp[j]);
+		parg->num[k] = ft_atoi(temp[j]);
 		k++;
 		j++;
 	}
@@ -100,18 +100,18 @@ void check_int_range(char *str)
 	}
 }
 
-void check_duplicate(t_arg *arg)
+void check_duplicate(t_arg *parg)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < arg->total -1)
+	while (i < parg->total -1)
 	{
 		j = i + 1;
-		while (j < arg->total)
+		while (j < parg->total)
 		{
-			if (arg->num[i] == arg->num[j])
+			if (parg->num[i] == parg->num[j])
 				ft_error("Error\nDuplicate here.");
 			else
 				j++;
@@ -123,13 +123,13 @@ void check_duplicate(t_arg *arg)
 
 #include <stdio.h>
 
-void check_arg(int argc, char **argv, t_arg *arg)
+void check_arg(int argc, char **argv, t_arg *parg)
 {
 	
 	check_argc(argc);
 	check_space(argc, argv);
-	if_double_quote_1(argc, argv, arg);
-	if_double_quote_2(argc, argv, arg);
-	check_duplicate(arg);
-	if_satisfied(arg);
+	if_double_quote_1(argc, argv, parg);
+	if_double_quote_2(argc, argv, parg);
+	check_duplicate(parg);
+	if_satisfied(parg);
 }

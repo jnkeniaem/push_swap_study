@@ -20,7 +20,9 @@ int main(int argc, char **argv)
 	int i = 0;
 	init_stack(&arg, &a, &b);
 	//명령어하고 인덱스에 맞게 스택에 넣어주는 작업 필요할것같아	
-	m_split(&arg, &a, &b, &merge);
+	ft_max(&arg);
+	split_to_b(&arg, &a, &b, &merge);
+	ft_merge_to_a(&arg, &a, &b, &merge);
 	ft_putstr_fd("------a-------\n", 1);
 	i = 0;
 	while (i < a.current)
@@ -35,7 +37,6 @@ int main(int argc, char **argv)
 		printf("%d\n", b.stack[(b.front + i) % arg.total]);
 		i++;
 	}
-	printf("higheset%d\n", the_highest_is(&merge));
 	free(arg.num);
 	free(a.stack);
 	free(b.stack);

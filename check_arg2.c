@@ -1,15 +1,15 @@
 #include "pushswap.h"
 
-void if_satisfied(t_arg *arg)
+void if_satisfied(t_arg *parg)
 {
 	int i;
 
 	i = 0;
-	if (arg->total == 1)
+	if (parg->total == 1)
 		exit(EXIT_SUCCESS);
-	while (i < arg->total - 1)
+	while (i < parg->total - 1)
 	{
-		if (arg->num[i] < arg->num[i + 1])
+		if (parg->num[i] < parg->num[i + 1])
 			i++;
 		else
 			return ;

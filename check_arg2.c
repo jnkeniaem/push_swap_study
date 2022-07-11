@@ -12,10 +12,10 @@ void if_satisfied(t_arg *parg)
 		if (parg->num[i] < parg->num[i + 1])
 			i++;
 		else
-			return ;
+			return ; // 딱 아닌 위치를 반환
 	}
 	exit(EXIT_SUCCESS);
-}
+}//
 
 void check_space(int argc, char **argv)
 {

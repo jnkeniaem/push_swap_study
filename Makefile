@@ -6,7 +6,7 @@
 #    By: jeekim <jeekim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/15 10:42:41 by jeekim            #+#    #+#              #
-#    Updated: 2022/07/07 15:15:01 by jeekim           ###   ########.fr        #
+#    Updated: 2022/07/11 19:04:28 by jeekim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,9 @@ LIBFT_SRCS	=	$(addprefix $(LIBFT_PATH), ft_putstr_fd.c ft_strlen.c \
 LIBFT_OBJS	=	$(LIBFT_SRCS:.c=.o)
 
 SRCS	=	main.c check_arg.c utils.c check_arg2.c init_stack.c \
-			swap.c push.c rotate.c reverse_rotate.c  new_ft_split.c \
-			merge_sort.c
-SRCS_B	=	
+			swap.c push.c rotate.c reverse_rotate.c  below_5.c \
+			new_ft_split.c
+#SRCS_B	=	
 OBJS	=	$(SRCS:.c=.o)
 OBJS_B	=	$(SRCS_B:.c=.o)
 

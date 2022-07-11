@@ -33,6 +33,15 @@ typedef struct
 	int	max;
 }t_arg;
 
+typedef struct
+{
+	int	end_a;
+	int	end_b;
+	int	ascen;
+	int descen;
+	int size;
+}t_map;
+
 void check_arg(int argc, char **argv, t_arg *parg);
 void if_double_quote(int argc, char **argv, t_arg *parg);
 void check_argc(int argc);
@@ -59,7 +68,12 @@ void rrb(t_arg *parg, t_b *ptr_b);
 void rrr(t_arg *parg, t_a *ptr_a, t_b *ptr_b);
 void ft_sort_ascend(int *tab, int size);
 void ft_sort_descend(int *tab, int size);
-void split_to_b (t_arg *parg, t_a *ptr_a, t_b *ptr_b, t_merge *pmerge);
-void ft_merge_to_a(t_arg *parg, t_a *ptr_a, t_b *ptr_b, t_merge *pmerge);
 void ft_max(t_arg *parg);
+void if_below_5(t_arg *parg, t_a *ptr_a, t_b *ptr_b);
+void if_2(t_arg *parg, t_a *ptr_a, t_b *ptr_b, int flag);
+// void if_2(t_arg *parg, t_a *ptr_a);
+void put_instruction(t_arg *parg, t_a *ptr_a, t_b *ptr_b, char *str);
+void indexing(t_arg *parg, t_a *ptr_a);
+
 #endif
+

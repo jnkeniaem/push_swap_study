@@ -6,7 +6,7 @@ void sa(t_arg *parg, t_a *ptr_a)
 
 	temp = ptr_a->stack[ptr_a->front];
 	ptr_a->stack[ptr_a->front] = ptr_a->stack[(ptr_a->front + 1) % parg->total];
-	ptr_a->stack[ptr_a->front + 1] = temp;
+	ptr_a->stack[(ptr_a->front + 1) % parg->total] = temp;
 }
 
 void sb(t_arg *parg, t_b *ptr_b)
@@ -15,7 +15,7 @@ void sb(t_arg *parg, t_b *ptr_b)
 
 	temp = ptr_b->stack[ptr_b->front];
 	ptr_b->stack[ptr_b->front] = ptr_b->stack[(ptr_b->front + 1) % parg->total];
-	ptr_b->stack[ptr_b->front + 1] = temp;
+	ptr_b->stack[(ptr_b->front + 1) % parg->total] = temp;
 }
 
 void ss(t_arg *parg, t_a *ptr_a, t_b *ptr_b)

@@ -1,5 +1,32 @@
 #include "pushswap.h"
 
+#include <stdio.h>
+
+void indexing(t_arg *parg, t_a *ptr_a)
+{
+	int *temp;
+	int	i;
+	int	j;
+
+	temp = malloc(sizeof(int) * parg->total);
+	i = 0;
+	temp[i] = 0;
+	while (i < parg->total)
+	{
+		j = 0;
+		while (j < parg->total)
+		{
+			if (parg->num[i] > parg->num[j])
+				temp[i]++;
+			j++;
+		}
+		i++;
+	}
+	free(ptr_a->stack);
+	ptr_a->stack = NULL;
+	ptr_a->stack = temp;
+}
+
 int	ft_available(char c, char *str)
 {
 	while (*str)

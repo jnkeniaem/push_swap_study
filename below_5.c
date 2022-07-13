@@ -32,7 +32,7 @@ void if_2(t_arg *parg, t_a *ptr_a, t_b *ptr_b, int flag)
 {
 	if (flag == 0 && ptr_a->stack[ptr_a->front] > ptr_a->stack[ptr_a->rear])
 		put_instruction(parg, ptr_a, ptr_b, "sa");
-	else if (flag == 1 && ptr_b->stack[ptr_b->front] > ptr_b->stack[ptr_b->rear])
+	else if (flag == 1 && ptr_b->stack[ptr_b->front] < ptr_b->stack[ptr_b->rear])
 		put_instruction(parg, ptr_a, ptr_b, "sb");
 }
 

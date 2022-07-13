@@ -74,6 +74,12 @@ void if_2(t_arg *parg, t_a *ptr_a, t_b *ptr_b, int flag);
 // void if_2(t_arg *parg, t_a *ptr_a);
 void put_instruction(t_arg *parg, t_a *ptr_a, t_b *ptr_b, char *str);
 void indexing(t_arg *parg, t_a *ptr_a);
+void if_exceed_5(t_arg *parg, t_a *ptr_a, t_b *ptr_b);
+void a_to_b(t_arg *parg, t_a *ptr_a, t_b *ptr_b, int chunk);
+void find_max(t_arg *parg, t_b *ptr_b, int size);
+void b_to_a(t_arg *parg, t_a *ptr_a, t_b *ptr_b);
+void test_print_stack(t_a *ptr_a, t_b *ptr_b, t_arg *parg);
+void test_print_stack_b(t_a *ptr_b, t_arg *parg);
 
 #endif
 

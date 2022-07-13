@@ -6,7 +6,7 @@
 #    By: jeekim <jeekim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/15 10:42:41 by jeekim            #+#    #+#              #
-#    Updated: 2022/07/11 19:04:28 by jeekim           ###   ########.fr        #
+#    Updated: 2022/07/13 20:55:04 by jeekim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBFT_OBJS	=	$(LIBFT_SRCS:.c=.o)
 
 SRCS	=	main.c check_arg.c utils.c check_arg2.c init_stack.c \
 			swap.c push.c rotate.c reverse_rotate.c  below_5.c \
-			new_ft_split.c
+			new_ft_split.c exceed_5.c test.c
 #SRCS_B	=	
 OBJS	=	$(SRCS:.c=.o)
 OBJS_B	=	$(SRCS_B:.c=.o)

@@ -19,11 +19,26 @@ int main(int argc, char **argv)
 	check_arg(argc, argv, &arg);
 	int i = 0;
 	init_stack(&arg, &a, &b);
-	//명령어하고 인덱스에 맞게 스택에 넣어주는 작업 필요할것같아	
 	// ft_max(&arg);
-	// if_below_5(&arg, &a, &b);
+	ft_putstr_fd("------a-------\n", 1);
+	i = 0;
+	while (i < a.current)
+	{
+		printf("%d\n", a.stack[(a.front + i) % arg.total]);
+		i++;
+	}
 	indexing(&arg, &a);
-	if_below_5(&arg, &a, &b);
+	ft_putstr_fd("---after indexing a---\n", 1);
+	i = 0;
+	while (i < a.current)
+	{
+		printf("%d\n", a.stack[(a.front + i) % arg.total]);
+		i++;
+	}
+	if (a.current <= 5)
+		if_below_5(&arg, &a, &b);
+	else
+		if_exceed_5(&arg, &a, &b);
 	ft_putstr_fd("------a-------\n", 1);
 	i = 0;
 	while (i < a.current)

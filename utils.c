@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeekim <jeekim@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/15 18:36:53 by jeekim            #+#    #+#             */
+/*   Updated: 2022/07/15 18:41:20 by jeekim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pushswap.h"
 
-#include <stdio.h>
-
-void indexing(t_arg *parg, t_a *ptr_a)
+void	indexing(t_arg *parg, t_a *ptr_a)
 {
-	int *temp;
+	int	*temp;
 	int	i;
 	int	j;
 
@@ -47,16 +57,16 @@ int	ft_strcmp(char *s1, char *s2)
 	{
 		if (s1[i] == s2[i])
 			i++;
-        else
-            break;
+		else
+			break ;
 	}
-    return (s1[i] - s2[i]);
+	return (s1[i] - s2[i]);
 }
 
-void ft_sort_ascend(int *tab, int size)
+void	ft_sort_ascend(int *tab, int size)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 	int	temp;
 
 	j = 0;
@@ -77,11 +87,11 @@ void ft_sort_ascend(int *tab, int size)
 	}
 }
 
-void ft_sort_descend(int *tab, int size)
+void	ft_sort_descend(int *tab, int size)
 {
-	int i;
-	int j;
-	int temp;
+	int	i;
+	int	j;
+	int	temp;
 
 	j = 0;
 	while (j < size - 1)
@@ -98,19 +108,5 @@ void ft_sort_descend(int *tab, int size)
 			}
 			i++;
 		}
-	}
-}
-
-void ft_max(t_arg *parg)
-{
-	int	i;
-
-	i = 0;
-	parg->max = parg->num[i];
-	while (i < parg->total - 1)
-	{
-		if (parg->max < parg->num[i + 1])
-			parg->max = parg->num[i + 1];
-		i++;
 	}
 }

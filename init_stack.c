@@ -1,7 +1,18 @@
-#include "pushswap.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_stack.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeekim <jeekim@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/15 18:29:38 by jeekim            #+#    #+#             */
+/*   Updated: 2022/07/15 18:30:05 by jeekim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void init_stack(t_arg *parg, t_a *pa, t_b *pb)//a stack 만들기?
+#include "pushswap.h"
+
+void	init_stack(t_arg *parg, t_a *pa, t_b *pb)
 {
 	int	i;
 
@@ -14,7 +25,7 @@ void init_stack(t_arg *parg, t_a *pa, t_b *pb)//a stack 만들기?
 	{
 		pa->stack[pa->rear] = parg->num[i];
 		if (pa->rear == parg->total -1)
-			break;
+			break ;
 		pa->rear = (pa->rear + 1) % (parg->total);
 		i++;
 	}
@@ -22,10 +33,4 @@ void init_stack(t_arg *parg, t_a *pa, t_b *pb)//a stack 만들기?
 	pb->rear = parg->total - 1;
 	pa->current = parg->total;
 	pb->current = 0;
-	// i = 0;
-	// while (i < pa->current)
-	// {
-	// 	printf("%d\n", pa->stack[(pa->front + i) % arg->total]);
-	// 	i++;
-	// }
 }

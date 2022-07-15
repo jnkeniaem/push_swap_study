@@ -6,16 +6,11 @@
 /*   By: jeekim <jeekim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 20:22:05 by jeekim            #+#    #+#             */
-/*   Updated: 2022/07/11 11:00:29 by jeekim           ###   ########.fr       */
+/*   Updated: 2022/07/15 18:30:33 by jeekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
-
-typedef struct
-{
-	char *dup;
-}t_dup;
 
 static unsigned int	ft_spl_cnt(const char *s, char c)
 {
@@ -57,10 +52,9 @@ static char	*ft_strndup(const char *s, unsigned int spl_len, t_dup *pdup)
 	return (pdup->dup);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_new_split(char const *s, char c, unsigned int new_idx)
 {
 	char			**new;
-	unsigned int	new_idx;
 	unsigned int	s_idx;
 	unsigned int	spl_len;
 	t_dup			m_dup;
@@ -70,7 +64,6 @@ char	**ft_split(char const *s, char c)
 	new = (char **)malloc(sizeof(char *) * (ft_spl_cnt(s, c) + 1));
 	if (new == NULL)
 		return (NULL);
-	new_idx = 0;
 	s_idx = 0;
 	while (s_idx < ft_strlen(s))
 	{
